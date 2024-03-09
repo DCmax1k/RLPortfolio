@@ -5,20 +5,18 @@ const fs = require('fs');
 const { SitemapStream, streamToPromise } = require('sitemap');
 const { createGzip } = require('zlib');
 
-const logger = (req, res, next) => {
+app.use(express.static(__dirname + '/client'));
+
+// Main route
+app.get('/', logger, (req, res) => {
+    // Logger
     const date = new Date();
     const time = `[ ${date.getHours()}:${date.getMinutes()} ]`;
     res.on('finish', () => {
         console.log(time, req.method, req.url, res.statusCode);
         console.log('');
     });
-    next();
-}
 
-app.use(express.static(__dirname + '/client'));
-
-// Main route
-app.get('/', logger, (req, res) => {
     res.sendFile(__dirname + '/client/index.html');
 });
 
