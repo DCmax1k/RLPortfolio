@@ -8,7 +8,7 @@ const { createGzip } = require('zlib');
 app.use(express.static(__dirname + '/client'));
 
 // Main route
-app.get('/', logger, (req, res) => {
+app.get('/', (req, res) => {
     // Logger
     const date = new Date();
     const time = `[ ${date.getHours()}:${date.getMinutes()} ]`;
