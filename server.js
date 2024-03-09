@@ -26,55 +26,55 @@ app.get('/vid/:vid', (req, res) => {
     res.sendFile(__dirname + '/client/video.html');
 });
 
-app.get('/video/:vid', (req, res) => {
-    if (req.hostname === 'localhost') {
-        res.sendFile(__dirname + '/client/videos/optimized/' + req.params.vid);
-    } else {
-        //console.log('Getting vid from disk')
-        res.sendFile('/mnt/hdd/videos/optimized/' + req.params.vid);
-    }
-});
-
-// app.get("/video/:vid", function (req, res) {
-//     let videoPath;
+// app.get('/video/:vid', (req, res) => {
 //     if (req.hostname === 'localhost') {
-//         videoPath = __dirname + '/client/videos/' + req.params.vid;
+//         res.sendFile(__dirname + '/client/videos/optimized/' + req.params.vid);
 //     } else {
-//         videoPath = '/mnt/hdd/videos/' + req.params.vid;
+//         //console.log('Getting vid from disk')
+//         res.sendFile('/mnt/hdd/videos/optimized/' + req.params.vid);
 //     }
-//     // Ensure there is a range given for the video
-//     const range = req.headers.range;
-//     if (!range) {
-//       res.status(400).send("Requires Range header");
-//     }
+// });
+
+app.get("/video/:vid", function (req, res) {
+    let videoPath;
+    if (req.hostname === 'localhost') {
+        videoPath = __dirname + '/client/videos/optimized/' + req.params.vid;
+    } else {
+        videoPath = '/mnt/hdd/videos/optimized/' + req.params.vid;
+    }
+    // Ensure there is a range given for the video
+    const range = req.headers.range;
+    if (!range) {
+      res.status(400).send("Requires Range header");
+    }
    
-//     // get video stats (about 100MB)
-//     const videoSize = fs.statSync(videoPath).size;
+    // get video stats (about 100MB)
+    const videoSize = fs.statSync(videoPath).size;
    
-//     // Parse Range
-//     // Example: "bytes=32324-"
-//     const CHUNK_SIZE = 10 ** 6; // 1MB
-//     const start = Number(range.replace(/\D/g, ""));
-//     const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
+    // Parse Range
+    // Example: "bytes=32324-"
+    const CHUNK_SIZE = 10 ** 6; // 1MB
+    const start = Number(range.replace(/\D/g, ""));
+    const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
    
-//     // Create headers
-//     const contentLength = end - start + 1;
-//     const headers = {
-//       "Content-Range": `bytes ${start}-${end}/${videoSize}`,
-//       "Accept-Ranges": "bytes",
-//       "Content-Length": contentLength,
-//       "Content-Type": "video/mp4",
-//     };
+    // Create headers
+    const contentLength = end - start + 1;
+    const headers = {
+      "Content-Range": `bytes ${start}-${end}/${videoSize}`,
+      "Accept-Ranges": "bytes",
+      "Content-Length": contentLength,
+      "Content-Type": "video/mp4",
+    };
    
-//     // HTTP Status 206 for Partial Content
-//     res.writeHead(206, headers);
+    // HTTP Status 206 for Partial Content
+    res.writeHead(206, headers);
    
-//     // create video read stream for this particular chunk
-//     const videoStream = fs.createReadStream(videoPath, { start, end });
+    // create video read stream for this particular chunk
+    const videoStream = fs.createReadStream(videoPath, { start, end });
    
-//     // Stream the video chunk to the client
-//     videoStream.pipe(res);
-//   });
+    // Stream the video chunk to the client
+    videoStream.pipe(res);
+  });
 
 // Sitemap
 let sitemap;
