@@ -1,0 +1,89 @@
+@import url(https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Kodchasan", sans-serif;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #232323;
+    width: 100vw;
+}
+
+.title {
+    color: #717171;
+    font-size: 3vh;
+    font-weight: bold;
+    text-align: center;
+}
+.title > .hl {
+    color: white;
+}
+
+.body {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.videosCont {
+    color: #717171;
+    margin-top: 5vh;
+    padding-bottom: 10vh;
+}
+.videosCont > h3 {
+    width: 100%;
+    text-align: center;
+}
+
+.video {
+    margin-top: 2vh;
+    position: relative;
+}
+.video > h3 {
+    margin-bottom: 0.5vh;
+    margin-left: 1vh;
+}
+.video > h3 > .date {
+    color: rgb(196, 196, 196);
+}
+
+.video > video {
+    width: 100%;
+    border: 5px solid rgb(151, 151, 151);
+    border-radius: 20px;
+    box-shadow: -5px 5px 5px black;
+}
+
+@media screen and (max-width: 700px) {
+    .body {
+        width: 90%;
+    }
+}
+
+
+/* SCROLLBAR */
+*::-webkit-scrollbar {
+    width: 1vh; 
+    height: 1.2vh;
+  }
+  *::-webkit-scrollbar-track {
+    background-color: #232323; 
+    cursor: pointer;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #454545;
+    border-radius: 10px;
+    cursor: pointer; 
+  }
+  *::-webkit-scrollbar-thumb:active {
+    cursor: pointer;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #7e7e7e; 
+  }
