@@ -12,10 +12,8 @@ app.get('/', (req, res) => {
     // Logger
     const date = new Date();
     const time = `[ ${date.getHours()}:${date.getMinutes()} ]`;
-    res.on('finish', () => {
-        console.log(time, req.method, req.url, res.statusCode);
-        console.log('');
-    });
+    console.log(time, req.method, req.url, res.statusCode);
+    console.log('');
 
     res.sendFile(__dirname + '/client/index.html');
 });
