@@ -25,6 +25,17 @@ app.get('/vid/:vid', (req, res) => {
     res.sendFile(__dirname + '/client/video.html');
 });
 
+app.get('/video/:vid', (req, res) => {
+    console.log(req.hostname);
+    if (req.hostname === 'localhost') {
+        res.sendFile(__dirname + '/client/videos/' + req.params.vid);
+    } else {
+        console.log('Getting vid from disk')
+        res.sendFile('/mnt/hdd/videos/' + req.params.vid);
+    }
+    
+});
+
 // Sitemap
 let sitemap;
 app.get('/sitemap.xml', async (req, res) => {
