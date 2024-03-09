@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/images/icon.png" />
+    <link rel="icon" href="/assets/icon.png" />
     <title>Document</title>
     <style>
         * {
@@ -33,7 +33,7 @@
         const videoName = window.location.href.split('/')[4];
 
         const videoElement = document.getElementById('vid');
-        videoElement.innerHTML = `<video width="100%" id="myVideo" loading='lazy'  preload="auto" type="video/mp4" playsinline controls="controls autoplay"  ><source id="videoSource" src="/videos/${videoName}.mov"  /></video>`;
+        videoElement.innerHTML = `<video width="100%" id="myVideo" loading='lazy'  preload="auto" type="video/mp4" playsinline controls="controls autoplay"  ><source id="videoSource" src="/video/${videoName}.mov"  /></video>`;
       </script>
 </body>
 </html>

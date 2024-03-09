@@ -26,11 +26,10 @@ app.get('/vid/:vid', (req, res) => {
 });
 
 app.get('/video/:vid', (req, res) => {
-    console.log(req.hostname);
     if (req.hostname === 'localhost') {
         res.sendFile(__dirname + '/client/videos/' + req.params.vid);
     } else {
-        console.log('Getting vid from disk')
+        //console.log('Getting vid from disk')
         res.sendFile('/mnt/hdd/videos/' + req.params.vid);
     }
     
