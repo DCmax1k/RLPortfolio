@@ -15,11 +15,10 @@ const logger = (req, res, next) => {
     next();
 }
 
-app.use(logger);
 app.use(express.static(__dirname + '/client'));
 
 // Main route
-app.get('/', (req, res) => {
+app.get('/', logger, (req, res) => {
     res.sendFile(__dirname + '/client/index.html');
 });
 
