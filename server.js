@@ -43,8 +43,9 @@ app.get("/video/:vid", function (req, res) {
         videoPath = '/mnt/hdd/videos/optimized/' + req.params.vid;
     }
     // Ensure there is a range given for the video
-    const range = req.headers.range;
+    let range = req.headers.range;
     if (!range) {
+        range = bytes=0-
       res.status(400).send("Requires Range header");
     }
    
