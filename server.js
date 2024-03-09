@@ -36,6 +36,9 @@ app.get('/vid/:vid', (req, res) => {
 // });
 
 app.get("/video/:vid", function (req, res) {
+    res.sendFile(__dirname + '/client/video.html');
+    return;
+    
     let videoPath;
     if (req.hostname === 'localhost') {
         videoPath = __dirname + '/client/videos/optimized/' + req.params.vid;
@@ -45,7 +48,6 @@ app.get("/video/:vid", function (req, res) {
     // Ensure there is a range given for the video
     let range = req.headers.range;
     if (!range) {
-        range = 'bytes=0-';
       res.status(400).send("Requires Range header");
     }
    
@@ -54,7 +56,6 @@ app.get("/video/:vid", function (req, res) {
    
     // Parse Range
     // Example: "bytes=32324-"
-    console.log("range: ", range);
     const CHUNK_SIZE = 10 ** 6; // 1MB
     const start = Number(range.replace(/\D/g, ""));
     const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
