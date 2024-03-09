@@ -29,11 +29,13 @@
 
     </div>
 
+    <a href="/">See other montages from Dylan</a>
+
     <script>
         const videoName = window.location.href.split('/')[4];
 
         const videoElement = document.getElementById('vid');
-        videoElement.innerHTML = `<video width="100%" id="myVideo" loading='lazy'  preload="auto" type="video/mp4" playsinline controls="controls autoplay"  ><source id="videoSource" src="/video/${videoName}.mov"  /></video>`;
+        videoElement.innerHTML = `<video width="100%" id="myVideo" preload="auto" type="video/mp4" playsinline controls="controls autoplay"  ><source id="videoSource" src="/video/${videoName}.mp4"  /></video>`;
       </script>
 </body>
 </html>
