@@ -15,6 +15,7 @@ const logger = (req, res, next) => {
     next();
 }
 
+app.use(logger);
 app.use(express.static(__dirname + '/client'));
 
 // Main route
