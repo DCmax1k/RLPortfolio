@@ -36,9 +36,14 @@ app.get('/vid/:vid', (req, res) => {
 // });
 
 app.get("/video/:vid", function (req, res) {
-    res.sendFile(__dirname + '/client/video.html');
+    if (req.hostname === 'localhost') {
+        res.sendFile(__dirname + '/client/videos/optimized/' + req.params.vid);
+    } else {
+        //console.log('Getting vid from disk')
+        res.sendFile('/mnt/hdd/videos/optimized/' + req.params.vid);
+    }
     return;
-    
+
     let videoPath;
     if (req.hostname === 'localhost') {
         videoPath = __dirname + '/client/videos/optimized/' + req.params.vid;
