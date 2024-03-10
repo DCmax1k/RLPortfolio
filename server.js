@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express();
-const fs = require('fs');
 
 const { SitemapStream, streamToPromise } = require('sitemap');
 const { createGzip } = require('zlib');
 
+// Middlewares
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(__dirname + '/client'));
 
 // Main route
@@ -15,21 +17,12 @@ app.get('/', (req, res) => {
     console.log(time, req.method, req.url, res.statusCode);
     console.log('');
 
-    res.sendFile(__dirname + '/client/index.html');
+    res.sendFile(__dirname + '/views/index.html');
 });
 
 app.get('/vid/:vid', (req, res) => {
-    res.sendFile(__dirname + '/client/video.html');
+    res.sendFile(__dirname + '/views/video.html');
 });
-
-// app.get('/video/:vid', (req, res) => {
-//     if (req.hostname === 'localhost') {
-//         res.sendFile(__dirname + '/client/videos/optimized/' + req.params.vid);
-//     } else {
-//         //console.log('Getting vid from disk')
-//         res.sendFile('/mnt/hdd/videos/optimized/' + req.params.vid);
-//     }
-// });
 
 app.get("/video/:vid", function (req, res) {
     if (req.hostname === 'localhost') {
@@ -39,6 +32,7 @@ app.get("/video/:vid", function (req, res) {
         res.sendFile('/mnt/hdd/videos/optimized/' + req.params.vid);
     }
 
+    // [ Commented out because cloudflare terms ]
     // let videoPath;
     // if (req.hostname === 'localhost') {
     //     videoPath = __dirname + '/client/videos/optimized/' + req.params.vid;
@@ -91,7 +85,7 @@ app.get('/sitemap.xml', async (req, res) => {
     }
 
     try {
-      const smStream = new SitemapStream({ hostname: 'https://rocketleague.digitalcaldwell.com/' });
+      const smStream = new SitemapStream({ hostname: 'https://rl.digitalcaldwell.com/' });
       const pipeline = smStream.pipe(createGzip());
 
       smStream.write({ url: '/'});
@@ -112,6 +106,6 @@ app.get('/sitemap.xml', async (req, res) => {
     }
 });
 
-app.listen(process.env.PORT || 3003, () => {
+app.listen(3003, () => {
     console.log('Serving on port 3003...');
 });
