@@ -27,7 +27,7 @@ body {
 }
 
 .body {
-    width: 70%;
+    width: 70vw;
     margin: 0 auto;
 }
 
@@ -62,7 +62,15 @@ body {
 }
 
 .video > video {
-    width: 100%;
+    width: 70vw;
+    height: 39.375vw;
+    border: 5px solid rgb(151, 151, 151);
+    border-radius: 20px;
+    box-shadow: -5px 5px 5px black;
+}
+.video > iframe {
+    width: 70vw;
+    height: 39.375vw;
     border: 5px solid rgb(151, 151, 151);
     border-radius: 20px;
     box-shadow: -5px 5px 5px black;
@@ -70,7 +78,12 @@ body {
 
 @media screen and (max-width: 700px) {
     .body {
-        width: 90%;
+        width: 90vw;
+        height: 50.625vw;
+    }
+    .video > iframe {
+        width: 90vw;
+        height: 50.625vw;
     }
 }
 
