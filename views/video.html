@@ -3,33 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCmax1k - Rocket League Portfolio</title>
     <link rel="icon" href="/assets/icon.png" />
-    <title>Document</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #vid {
-            max-width: 80vw;
-            max-height: 80vh;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body style="background-color: #232323;">
-    <div id="vid">
+    <div class="body">
+        <div class="title">
+            Rocket League <br /> montages by <span class="hl">DCmax1k</span>
+        </div>
+    
+        <div class="videosCont">
+    
+            <div class="videos">
 
+                <div class="video">
+                    <h3><img src="/assets/fire-solid.svg" /><span class="hot"> New </span>Published <span class="date">March 21, 2024</span></h3>
+                    <iframe src="https://www.youtube.com/embed/p4mj7-QLMrE?si=NDZnS1aaWmVfXOAF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <a href="/">See more montages from Dylan</a>
+    
+            </div>
+        </div>
     </div>
 
-    <a href="/">See other montages from Dylan</a>
+    <script src="/app.js"></script>
 
     <script>
         const videoName = window.location.href.split('/')[4];
